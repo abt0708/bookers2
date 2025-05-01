@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   def index
     @books = Book.all
     @book = Book.new
@@ -16,9 +17,14 @@ class BooksController < ApplicationController
 
   # 以下を追加
   def create
-    book = Book.new(list_params)
-    Book.save
-    render :index
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id  # userとの紐付け
+    if @book.save
+      redirect_to books_path, notice: "Book was successfully created."
+    else
+      @books = Book.all
+      render :index
+    end
   end
 
   private

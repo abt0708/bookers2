@@ -38,16 +38,30 @@
     
         <% end %>
       </div>
+
       <!-- 右カラム：今は空の一覧エリア -->
       <div class="col-lg-9">
         <h2>Books</h2>
         <table>
-        <tr>
-          <th>Title</th> 
-          <th>Opinion</th>
-        </tr>
+            <tr>
+              <th>ここは何もいらない</th>
+              <th>Title</th> 
+              <th>Opinion</th>
+            </tr>
+            <% @books.each do |book| %>
+            <tr>
+            <td>
+              <% if book.user.image.attached? %>
+                <%= image_tag book.user.image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </td>
+              <td><%= link_to book.title, book_path(book.user) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
         </table>
-        <p class="text-muted">まだ投稿はありません。</p>
       </div>
     </div>
   </div>

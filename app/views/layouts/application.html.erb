@@ -14,20 +14,30 @@
       <header>
         <% if user_signed_in? %>
           <li>
-            <%= link_to "Home", root_path%>
+            <%= link_to root_path do %>
+              <i class="fa-solid fa-house"></i><span>Home</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to "Users",users_path%>
+            <%= link_to users_path do%>
+              <i class="fa-solid fa-users"></i><span>User</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to "Books ",books_path %>
+            <%= link_to books_path do %>
+              <i class="fa-solid fa-book-open"></i><span>Books</span>
+            <% end %>
           </li>
           <li>
-            <%= link_to "Log out ", destroy_user_session_path, method: :delete %>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket"></i><span>Log out</span>
+            <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to "Home", root_path %>
+            <%= link_to root_path do %>
+              <i class="fa-solid fa-house"></i><span>Home</span>
+            <% end %>
           </li>
           <li>
             <%= link_to "About", new_user_registration_path %>

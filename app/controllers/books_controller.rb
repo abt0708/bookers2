@@ -11,7 +11,18 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
   end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params) # 本の更新
+      redirect_to book_path(@book), notice: "Book was successfully updated."
+    else
+      render :edit # 更新が失敗した場合、編集ページに戻る
+    end
+  end
+
 
   def new
     @book = Book.new

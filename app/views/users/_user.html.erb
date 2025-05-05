@@ -1,19 +1,22 @@
 <div class="col-3">
   <h2>User info</h2>
-  <% if book.image.attached? %>
-    <%= image_tag book.image, size: "100x100" %>
+
+  <% display_user = (controller_name == 'users' && action_name == 'show') ? user : current_user %>
+
+  <% if display_user.image.attached? %>
+    <%= image_tag display_user.image, size: "100x100" %>
   <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
   <% end %>
 
   <table class="table">
     <tr>
-      <th>name</th>
-      <td><%= user.name %></td>
+      <th>Name</th>
+      <td><%= display_user.name %></td>
     </tr>
     <tr>
-      <th>introduction</th>
-      <td><%= user.introduction %></td>
+      <th>Introduction</th>
+      <td><%= display_user.introduction %></td>
     </tr>
   </table>
 

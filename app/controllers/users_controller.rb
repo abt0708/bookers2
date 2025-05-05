@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     @book = Book.new
   end
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])  # そのユーザー情報を取得
+    @books = @user.books  # ユーザーが投稿した本を取得
   end
 
   def edit

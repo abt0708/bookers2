@@ -2,6 +2,7 @@
   <h2>User info</h2>
 
   <% display_user = (controller_name == 'books' && action_name == 'show') ? book.user : current_user %>
+  <!-- 理由: `books#show` の場合は book.user を表示、それ以外では current_user を表示 -->
 
   <% if display_user.image.attached? %>
     <%= image_tag display_user.image, size: "100x100" %>
@@ -20,11 +21,13 @@
     </tr>
   </table>
 
-  <%= link_to edit_user_registration_path do %>
+  <%= link_to (display_user == current_user ? edit_user_path(display_user) : user_path(current_user)) do %>
     <button type="button" class="btn btn-outline-secondary btn-block">
       <i class="fa-solid fa-user-gear"></i>
     </button>
   <% end %>
+  <!-- 理由: `display_user` が `current_user` と同じ場合、`edit_user_path` へ遷移
+       それ以外の場合、`current_user` の `show` ページに遷移するリンクを作成 -->
 
   <h1>New book</h1>
   <%= form_with model: book do |f| %>

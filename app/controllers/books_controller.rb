@@ -6,9 +6,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @books = Book.all
-    @book = Book.new
     @book = Book.find(params[:id])
+    @books = @book.user.books  # 投稿者の投稿だけ取得
   end
 
   def edit

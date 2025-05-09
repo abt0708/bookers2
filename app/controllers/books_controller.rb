@@ -17,7 +17,9 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params) # 本の更新
-      redirect_to book_path(@book), notice: "Book was successfully updated."
+      # フラッシュメッセージを設定
+      flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(@book)  # 更新後は詳細ページにリダイレクト
     else
       render :edit # 更新が失敗した場合、編集ページに戻る
     end
@@ -34,15 +36,17 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  # 以下を追加
+  
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id  # userとの紐付け
     if @book.save
-      redirect_to book_path(@book), notice: "Book was successfully created."
+      # フラッシュメッセージを設定
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(@book)  # 投稿ページへリダイレクト
     else
       @books = Book.all
-      render :index
+      render :index  # 投稿が失敗した場合、indexページに戻る
     end
   end
 

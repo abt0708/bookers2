@@ -20,7 +20,7 @@
     </tr>
   </table>
 
-  <%= link_to (display_user == current_user ? edit_user_path(current_user) : user_path(current_user)) do %>
+  <%= link_to edit_user_path(display_user) do %>
     <button type="button" class="btn btn-outline-secondary btn-block">
       <i class="fa-solid fa-user-gear"></i>
     </button>

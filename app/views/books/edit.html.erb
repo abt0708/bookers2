@@ -1,5 +1,16 @@
 <h1>Books#edit</h1>
 <p>Find me in app/views/books/edit.html.erb</p>
+<% if @book.errors.any? %>
+  <div style="background-color: white; color: black;">
+    <h3><%= @book.errors.count %> errors prohibited this book from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class = container>
   <div class = row>
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">

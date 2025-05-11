@@ -1,4 +1,3 @@
-<div class="col-3">
   <h2>User info</h2>
 
   <% display_user = (controller_name == 'books' && action_name == 'show') ? book.user : current_user %>
@@ -22,7 +21,7 @@
   </table>
 
   <%= link_to (display_user == current_user ? edit_user_path(display_user) : user_path(current_user)) do %>
-    <button type="button" class="btn btn-outline-secondary btn-block">
+    <button type="button" class="btn btn-outline-secondary btn-lg btn-block">
       <i class="fa-solid fa-user-gear"></i>
     </button>
   <% end %>
@@ -43,4 +42,3 @@
 
     <%= f.submit 'Create Book', class: "btn btn-success sign_up" %>
   <% end %>
-</div>

@@ -27,7 +27,7 @@
               <!-- 右寄せ：ナビメニュー -->
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <%= link_to root_path, class: "nav-link text-white" do %>
+                  <%= link_to user_path(current_user), class: "nav-link text-white" do %>
                     <i class="fa-solid fa-house"></i><span> Home</span>
                   <% end %>
                 </li>
@@ -73,7 +73,7 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to new_user_session_path, class: "nav-link text-white" do %>
-                    <i class="fa-solid fa-right-from-bracket"></i><span> Log in</span>
+                    <i class="fa-solid fa-right-to-bracket"></i><span> Log in</span>
                   <% end %>
                 </li>
               </ul>

@@ -4,10 +4,12 @@
   <div class="container px-5 px-sm-0">
     <div class="row">
       <!-- 左カラム：ユーザー情報と新規投稿 -->
-      <%= render 'users/user', user: @user, book: Book.new %>
+      <div class="col-md-3">
+        <%= render 'users/user', user: @user, book: Book.new %>
+      </div>
 
       <!-- 右カラム：ユーザーが投稿した本の一覧 -->
-      <div class="col-8">
+      <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
         <table class="table">
           <thead>

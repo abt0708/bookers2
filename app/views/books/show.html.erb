@@ -1,15 +1,20 @@
 <h1>Books#show</h1>
 <p>Find me in app/views/books/show.html.erb</p>
-  <main>
-    <div class = "container px-5 px-sm-0">
-      <div class="row">
-      <%= render 'books/book', book: @book %>
 
-      <!--右ページ-->
-      <div class="col-8">
-       <h2>Book detail</h2>
-       <table class = "table">
-            <% @books.each do |book| %>
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+
+      <!-- 左カラム -->
+      <div class="col-md-3">
+        <%= render 'books/book', book: @book %>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <% @books.each do |book| %>
             <tr>
               <td>
                 <% if book.user.profile_image.attached? %>
@@ -19,17 +24,20 @@
                 <% end %>
                 <p><%= link_to book.user.name, user_path(book.user) %></p>
               </td>
-              <td><%= link_to book.title, user_path(book.user) %></td>
+              <td><%= link_to book.title, book_path(book) %></td>
               <td><%= book.body %></td>
 
               <% if current_user == book.user %>
-              <td><%= link_to 'Edit', edit_book_path(book), class: "btn btn-success btn-sm btn-block" %></td>
-              <td>
-              <%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: '本当に消しますか？' } , class: "btn btn-danger btn-sm btn-block"%>
-              </td>
-             <% end %>
+                <td><%= link_to 'Edit', edit_book_path(book), class: "btn btn-success btn-sm btn-block" %></td>
+                <td>
+                  <%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger btn-sm btn-block" %>
+                </td>
+              <% end %>
             </tr>
-         <% end %>
+          <% end %>
         </table>
       </div>
+
     </div>
+  </div>
+</main>

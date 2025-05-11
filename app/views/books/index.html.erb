@@ -2,38 +2,42 @@
 <p>Find me in app/views/books/index.html.erb</p>
 
 <main>
-  <!-- 左カラム -->
-  <% if @book.errors.any? %>
-    <div style="background-color: white; color: black;">
-    <h3><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
-      <ul>
-        <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class = "container px-5 px-sm-0">
+  <div class="container px-5 px-sm-0">
     <div class="row">
-    <%= render 'books/book', book: @book %>
-      <!-- 右カラム：今は空の一覧エリア -->
-      <div class="col-8">
-        <h2>Books</h2>
-        <table class = "table">
-            <tr>
-              <th></th>
-              <th>Title</th> 
-              <th>Opinion</th>
-            </tr>
-            <% @books.each do |book| %>
-            <tr>
-            <td>
-              <% if display_user.profile_image.attached? %>
-                <%= image_tag display_user.profile_image, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no_image', size: "100x100" %>
+      <!-- 左カラム -->
+      <div class="col-md-3">
+        <% if @book.errors.any? %>
+          <div style="background-color: white; color: black;">
+            <h3><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
               <% end %>
-            </td>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= render 'books/book', book: @book %>
+      </div>
+
+      <!-- 右カラム：投稿された本の一覧 -->
+      <div class="col-md-8 offset-md-1">
+        <h2>Books</h2>
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Title</th> 
+            <th>Opinion</th>
+          </tr>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <% if book.user.profile_image.attached? %>
+                  <%= image_tag book.user.profile_image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "100x100" %>
+                <% end %>
+              </td>
               <td><%= link_to book.title, book_path(book) %></td>
               <td><%= book.body %></td>
             </tr>

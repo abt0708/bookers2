@@ -17,7 +17,7 @@ def update
   @user = current_user
   if @user.update(user_params)
     flash[:notice] = "You have updated user successfully."  # フラッシュメッセージを追加
-    redirect_to books_path  # 本の一覧ページにリダイレクト
+    redirect_to user_path(@user)  # ユーザ詳細ページ
   else
     render :edit  # 更新に失敗した場合は編集ページに戻る
   end

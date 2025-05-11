@@ -4,8 +4,8 @@
   <% display_user = (controller_name == 'books' && action_name == 'show') ? book.user : current_user %>
   <!-- 理由: `books#show` の場合は book.user を表示、それ以外では current_user を表示 -->
 
-  <% if display_user.image.attached? %>
-    <%= image_tag display_user.image, size: "100x100" %>
+  <% if display_user.profile_image.attached? %>
+    <%= image_tag display_user.profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
   <% end %>

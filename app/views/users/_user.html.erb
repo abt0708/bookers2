@@ -3,8 +3,8 @@
 
   <% display_user = (controller_name == 'users' && action_name == 'show') ? user : current_user %>
 
-  <% if display_user.image.attached? %>
-    <%= image_tag display_user.image, size: "100x100" %>
+  <% if display_user.profile_image.attached? %>
+    <%= image_tag display_user.profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
   <% end %>

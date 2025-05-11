@@ -17,11 +17,11 @@
           <% @users.each do |user| %>
             <tr>
               <td>
-                <% if user.image.attached? %>
-                  <%= image_tag user.image, size: "80x80" %>
-                <% else %>
-                  <%= image_tag 'no_image', size: "80x80" %>
-                <% end %>
+              <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: "80x80" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "80x80" %>
+              <% end %>
               </td>
               <td><%= link_to user.name, user_path(user) %></td>
               <td><%= link_to 'show', user_path(user) %></td>

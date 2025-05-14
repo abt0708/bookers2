@@ -1,7 +1,7 @@
   <h2>User info</h2>
 
-  <% display_user = (controller_name == 'books' && action_name == 'show') ? book.user : current_user %>
-  <!-- 理由: `books#show` の場合は book.user を表示、それ以外では current_user を表示 -->
+
+  <% display_user = local_assigns[:display_user] || current_user %>
 
   <% if display_user.profile_image.attached? %>
     <%= image_tag display_user.profile_image, size: "100x100" %>

@@ -9,6 +9,8 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @books = @book.user.books  # 投稿者の投稿だけ取得
+    @display_user = @book.user # ← 追加！　修正案２ 
+    @new_book = Book.new  # ← フォーム用に空のbookインスタンスを渡す　修正あん１ エラー２解決
   end
 
   def edit

@@ -43,7 +43,7 @@
                     <% end %>
                   <% else %>
                     <%= link_to book_favorite_path(book), method: :post do %>
-                      <i class="fa fa-heart-o"></i> <%= book.favorites.count %>
+                      <i class="fa fa-heart"></i> <%= book.favorites.count %>
                     <% end %>
                   <% end %>
                 </td>

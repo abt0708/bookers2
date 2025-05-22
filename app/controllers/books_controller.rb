@@ -11,6 +11,7 @@ class BooksController < ApplicationController
     @books = @book.user.books  # 投稿者の投稿だけ取得
     @display_user = @book.user # ← 追加！　修正案２ 
     @new_book = Book.new  # ← フォーム用に空のbookインスタンスを渡す　修正あん１ エラー２解決
+    @book_comment = BookComment.new
   end
 
   def edit

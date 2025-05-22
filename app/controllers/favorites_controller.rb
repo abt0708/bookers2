@@ -3,10 +3,13 @@ class FavoritesController < ApplicationController
     book = Book.find(params[:book_id])
     favorite = current_user.favorites.new(book_id: book.id)
     favorite.save
-    if request.referer&.include?(book_path(book))
-      redirect_to book_path(book)   # 詳細画面からのリクエストなら詳細画面に戻す
+    referer = request.referer
+    if referer&.include?(book_path(book))
+      redirect_to book_path(book)   # 詳細画面からのリクエスト
+    elsif referer&.include?(user_path(current_user))
+      redirect_to user_path(current_user)  # ユーザ詳細画面からのリクエスト
     else
-      redirect_to books_path        # それ以外は一覧画面へ
+      redirect_to books_path         # それ以外は一覧画面
     end
   end
 
@@ -14,10 +17,13 @@ class FavoritesController < ApplicationController
     book = Book.find(params[:book_id])
     favorite = current_user.favorites.find_by(book_id: book.id)
     favorite.destroy if favorite
-    if request.referer&.include?(book_path(book))
+    referer = request.referer
+    if referer&.include?(book_path(book))
       redirect_to book_path(book)
+    elsif referer&.include?(user_path(current_user))
+      redirect_to user_path(current_user)
     else
       redirect_to books_path
     end
-  end
+  end 
 end

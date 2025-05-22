@@ -60,6 +60,20 @@
             <% end %>
           </tr>
         </table>
+        <!-- ここにいいね機能を追加 -->
+        <% if @book.favorited_by?(current_user) %>
+          <p>
+            <%= link_to book_favorite_path(@book), method: :delete do %>
+              ♥<%= @book.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to book_favorite_path(@book), method: :post do %>
+              ♡<%= @book.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
       </div>       
     </div>
   </div>
